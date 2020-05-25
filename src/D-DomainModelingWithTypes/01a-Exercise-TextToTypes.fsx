@@ -75,7 +75,10 @@ type undefined = exn
 data PersonalName = FirstName AND LastName
 *)
 
-type PersonalName = ??
+type PersonalName = {
+    FirstName : string
+    LastName : string
+}
 
 (*
 ------------------------------------------
@@ -86,7 +89,16 @@ data OrderLine =
 *)
 
 
-type OrderLine = ??
+type OrderId = int
+type ProductId = int
+type OrderQuantity = int
+
+
+type OrderLine = {
+    OrderId : OrderId
+    Product : ProductId
+    OrderQuantity : OrderQuantity
+}
 
 (*
 ------------------------------------------
@@ -97,7 +109,13 @@ data Blog =
 data BlogName = all printable chars, maxlen = 100
 *)
 
-type Blog = ??
+type BlogName = string
+type BlogPost = undefined
+
+type Blog = {
+    BlogName : BlogName
+    BlogPosts : BlogPost List 
+}
 
 
 (*
@@ -108,8 +126,9 @@ data TShirt =
   OR Small (with TShirtColor)
 *)
 
-type TShirtColor = ??
-type TShirt = ??
+type TShirtColor = Black | Red | Blue
+    
+type TShirt = Large of TShirtColor | Small of TShirtColor
 
 
 
@@ -121,8 +140,8 @@ data ShippingMethod =
   OR Express (with ExpressShippingType)
 *)
 
-type ExpressShippingType = ??
-type ShippingMethod = ??
+type ExpressShippingType = OneDay | TwoDay
+type ShippingMethod = Standard | Express of ExpressShippingType
 
 
 (*
