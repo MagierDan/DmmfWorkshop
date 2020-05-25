@@ -17,9 +17,13 @@ add1 4
 // define the logging functions
 // ===========================================
 
-let logTheInput x = ??  // use printfn
+let logTheInput (x:int) =
+    printfn "%i" x
+    x  // use printfn
 
-let logTheOutput x = ??  // use printfn
+let logTheOutput (x:int) =
+    printfn "%i" x
+    x  // use printfn
 
 
 // ===========================================
@@ -28,7 +32,7 @@ let logTheOutput x = ??  // use printfn
 
 // TIP for add1Logged use piping "|>"
 let add1Logged x =
-    x |> ??
+    x |> logTheInput |> add1 |> logTheOutput
 
 // test
 add1Logged 4

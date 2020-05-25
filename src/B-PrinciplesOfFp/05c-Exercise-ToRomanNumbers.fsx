@@ -30,12 +30,20 @@ let replace (oldValue:string) (newValue:string) (inputStr:string) =
 
 let toRomanNumerals number =
     let replace_IIIII_V str = replace "IIIII" "V" str
-    let replace_VV_X str = replace ???
-
+    let replace_VV_X str = replace "VV" "X" str
+    let replace_XXXXX_L str = replace  "XXXXX" "L" str
+    let replace_LL_C str = replace "LL" "C" str
+    let replace_CCCCC_D str = replace "CCCCC" "D" str
+    let replace_DD_M str = replace "DD" "M" str
+    
+    
     String.replicate number "I"
-    |> ???
-    |> ???
-    |> ???
+    |> replace_IIIII_V
+    |> replace_VV_X 
+    |> replace_XXXXX_L 
+    |> replace_LL_C
+    |> replace_CCCCC_D
+    |> replace_DD_M
 
 
 // test it
@@ -61,8 +69,12 @@ toRomanNumerals 1947
 let toRomanNumerals_v2 number =
     String.replicate number "I"
     |> replace "IIIII" "V"
-    |> ???
-
+    |> replace "VV" "X"
+    |> replace "XXXXX" "L"
+    |> replace "LL" "C"
+    |> replace "CCCCC" "D"
+    |> replace "DD" "M"
+  
 
 // test it
 toRomanNumerals_v2 12
@@ -79,18 +91,27 @@ toRomanNumerals_v2 1947
 //   Just replace "IIII" with "IV", etc
 // ======================================
 
-(*
-let toRomanNumerals_v3 number =
-   // add IV
-   // add IX
-*)
 
-(*
+let toRomanNumerals_v3 number =
+   String.replicate number "I"
+    |> replace "IIIII" "V"
+    |> replace "VV" "X"
+    |> replace "XXXXX" "L"
+    |> replace "LL" "C"
+    |> replace "CCCCC" "D"
+    |> replace "DD" "M"
+    // sothers
+    |> replace "IIII" "IV"
+    |> replace "VIIII" "IX"
+   // add IX
+
+
+
 // test it
 toRomanNumerals_v3 4
 toRomanNumerals_v3 14
 toRomanNumerals_v3 19
-*)
+
 
 
 // ======================================
@@ -108,4 +129,11 @@ let toRomanNumerals_v4 number =
 
     String.replicate number "I"
     |> replace "IIIII" "V"
-    |> ???
+    |> replace "VV" "X"
+    |> replace "XXXXX" "L"
+    |> replace "LL" "C"
+    |> replace "CCCCC" "D"
+    |> replace "DD" "M"
+    // sothers
+    |> replace "IIII" "IV"
+    |> replace "VIIII" "IX"

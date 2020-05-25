@@ -67,15 +67,19 @@ let testS x = x=x
 // let sigA x = x + 1
 
 // val sigB = int -> unit
+let sigB x = ()
 
 // val sigC = int -> string
+let sigC (x:int) = sprintf ("hello %i") x
 
 // val sigD = unit -> string
+let sigD () = "toto"
 
 // val sigE = string -> string
+let sigE s = sprintf ("hello %s") s
 
 // val sigF = int -> bool -> float -> string
-
+let sigF i b f = sprintf ("int %i boolean %b and float %g") i b f
 
 // =============================================
 // Exercise: 
@@ -91,16 +95,16 @@ let testS x = x=x
 
 // Remove spaces from front and back of a string
 // The "s" parameter is a string and it returns a string
-let trim s = s.Trim()
+let trim (s:string) = s.Trim()
 
 // Return the length of string
 // The "s" parameter is a string and it returns an int
-let len s = s.Length
+let len (s:string) = s.Length
 
 // Replace a substring with new substring 
 // The s, oldStr,newStr parameters are all string
 // and it returns a string 
-let replace oldStr newStr s = s.Replace(oldStr,newStr)
+let replace (oldStr:string) (newStr:string) (s:string) = s.Replace(oldStr,newStr)
 (*
 This one is tricky because .NET has two overloads
   Replace(string,string)
@@ -116,9 +120,10 @@ So we need to say what type the parameters are too.
 // =============================================
 
 // val sigW = 'a -> int
-
+let sigW x = 1
 // val sigX = int -> 'a
-
+let sigX (y:int) = x
 // val sigY = 'a -> 'a
-
+let sigY x = x
 // val sigZ = 'a -> 'b
+let sigZ x = 

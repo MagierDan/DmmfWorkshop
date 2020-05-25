@@ -44,14 +44,23 @@ let data = {something="hello"; somethingElse=42};
 let something = data.something
 *)
 
+type Data = {result:string; number:int}
+
 // helper function
 let isDivisibleBy n divisor =  // question: why put the divisor first?
     (n % divisor) = 0
 
 
+
+let check n divisor label (data:Data) =
+    if data.result = ""
+    then
+        if isDivisibleBy n divisor then {data.result = label; data.number}
+        else data
+
 // fizzBuzz takes an int and returns a string
 let fizzBuzz (aNumber:int) :string =
-    // something with 15 "FizzBuzz"
+    if isDivisibleBy aNumber 15 then "FizzBuzz"
     // then do something with 3 "Fizz"
     // then do something with 5 "Buzz"
     // then do something with what's left
