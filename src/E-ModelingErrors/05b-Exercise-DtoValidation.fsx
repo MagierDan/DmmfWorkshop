@@ -46,7 +46,9 @@ module Domain =
     //  * property Age of type Age
     //  * property Email of type Email
     type Person = {
-        ??
+        Name: PersonalName
+        Age: Age
+        Email: Email
         }
 
     module String10 =
@@ -68,9 +70,9 @@ module Domain =
             if i < 0 then
                 Error "Age too small"
             else if i > 130 then
-                ??
+                Error "Age too high"
             else
-                ??
+                Ok (Age i)
 
         let value (Age s) = s
 
@@ -80,11 +82,11 @@ module Domain =
         // Add constructor for Email
         let create s =
             if String.IsNullOrEmpty(s) then
-                ??
+                Error "Email must not be null or empty"
             else if s.Contains("@") |> not then
                 Error "Email must contain @"
             else
-                ??
+                Ok (Email s)
 
         let value (Email s) = s
 
@@ -123,7 +125,9 @@ let toDto (person:Person) :PersonDto =
     // Exercise ) create a function "toDto" that converts a Person into a DTO
     {
     first = String10.value person.Name.First
-    ??
+    last = String10.value person.Name.Last
+    age = Age.value person.Age
+    email = Email.value person.Email
     }
 
 /// Create a person from a DTO.
@@ -134,12 +138,24 @@ let fromDto (personDto:PersonDto) :Validation<Person,string> =
         personDto.first
         |> String10.create
         |> Validation.ofResult
-    let lastOrError = ??
-    let ageOrError = ??
-    let emailOrError = ??
+    let lastOrError =
+        personDto.last
+        |> String10.create
+        |> Validation.ofResult
+    let ageOrError =
+        personDto.age
+        |> Age.create
+        |> Validation.ofResult
+    let emailOrError =
+        personDto.email
+        |> Email.create
+        |> Validation.ofResult
 
-    let nameOrError = ??
-    let personOrError = ??
+    let nameOrError =
+        (Validation.lift2 createName) firstOrEror lastOrError
+    let personOrError =
+        (Validation.lift createPerson) nameOrError ageOrError emailOrError
+        ??
 
     personOrError // return
 

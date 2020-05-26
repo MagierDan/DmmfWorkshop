@@ -51,9 +51,9 @@ let resultBind nextFunction result =
 
 let validateInput input =
     input
-    |> ??
-    |> ??
-    |> ??
+    |> resultBind checkNameNotBlank
+    |> resultBind checkName50 
+    |> Result.bind checkEmailNotBlank
 
     // add some more validations if you like
 

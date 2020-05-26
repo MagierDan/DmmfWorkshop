@@ -24,9 +24,9 @@ type Request = {
 //===========================================
 
 type ErrorMessage =
-  | ??   // name not blank
-  | ?? of int  // name not longer than
-  | ??   // email not longer than
+  | NameMustNotBeBlank   // name not blank
+  | NameMustNotBelongerThan of int  // name not longer than
+  | EmailMustNotBeBlank  // email not longer than
 
 
 //===========================================
@@ -61,19 +61,19 @@ module RopUtil =
 
 let nameNotBlank input =
   if input.Name = "" then
-    Error ??
+    Error NameMustNotBeBlank
   else
     Ok input
 
 let name50 input =
   if input.Name.Length > 50 then
-    Error (?? 50)
+    Error (NameMustNotBelongerThan 50)
   else
     Ok input
 
 let emailNotBlank input =
   if input.Email = "" then
-    Error ??
+    Error EmailMustNotBeBlank
   else
     Ok input
 

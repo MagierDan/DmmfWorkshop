@@ -35,8 +35,8 @@ module TicTacToe =
     // when making a move
     type MoveError =
       | PlayedSameSquare of Square
-      | ??
-      | ??
+      | PlayedTwice of Player
+      | PlayedWhenGameIsOver of Player
 
 
     // In the main workflow , use a Result as the output
@@ -64,7 +64,10 @@ module AtmCashMachine =
     // when withdrawing money
     type WithdrawalError =
         | CardNotAcceptedHere
-        | ??
+        | WrongPinEntered
+        | AmountTooImportant
+        | LimitAttained
+        | OutOfOrder
 
     // In the main workflow , use a Result as the output
     type WithdrawMoney =

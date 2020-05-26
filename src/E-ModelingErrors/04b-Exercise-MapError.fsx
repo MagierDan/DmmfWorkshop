@@ -47,7 +47,9 @@ let updateDatabase input =
 // ----------------------------------
 // define a common type with both errors
 
-type WorkflowError = ??
+type WorkflowError =
+    | ValidationError
+    | DatabaseError
 
 
 // ----------------------------------
