@@ -21,13 +21,12 @@ module ConstrainedTypes =
     module NonZeroInteger =
         // TODO: Implement public constructor
         let create i =
-            //what goes here?
-            notImplemented()
+            if i = 0
+            then None
+            else Some(NonZeroInteger i)
 
         // TODO: Implement a function that returns the value
-        let value ??  =
-            //what goes here?
-            ??
+        let value (NonZeroInteger i)  = i
 
 
 // --------------------------------

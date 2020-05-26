@@ -42,7 +42,16 @@ module Calendar =
     module ExtendedOutputDesign =
         // Exercise: convert the function to be total
         //           by extending the output.
-        let strToDayOfWeek s = notImplemented()
+        let strToDayOfWeek s = 
+        match s with
+        | "Sunday" | "Sun" -> Some Sun
+        | "Monday" | "Mon" -> Some Mon
+        | "Tuesday" | "Tue" -> Some Tue
+        | "Wednesday" | "Wed" -> Some Wed
+        | "Thursday" | "Thu" -> Some Thu
+        | "Friday" | "Fri" -> Some Fri
+        | "Saturday" | "Sat" -> Some Sat
+        | _ -> None
 
 // test the function
 Calendar.ExceptionBasedDesign.strToDayOfWeek "Sunday"  // good
@@ -71,7 +80,10 @@ module IntUtil =
         // Exercise: Convert this function to be total
         //           by extending the output.
         // Should it have a different name?
-        let strToInt s = notImplemented()
+        let strToInt s = 
+            match System.Int32.TryParse s with
+            | true, i -> Some i
+            | false, _ -> None
 
 // test the function
 IntUtil.ExceptionBasedDesign.strToInt "123"     // good
@@ -96,7 +108,10 @@ module ListUtil =
         // Exercise: Convert this function to be total
         //           by extending the output.
         // Should it have a different name?
-        let tryFirstItem aList = notImplemented()
+        let tryFirstItem aList = 
+            match aList with
+            | first::rest -> Some first
+            | [] -> None
 
 // test the function
 ListUtil.ExceptionBasedDesign.firstItem [1;2;3]           // good

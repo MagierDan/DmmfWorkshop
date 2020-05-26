@@ -60,9 +60,19 @@ type BadContact = {
 // ----------------------------------------
 module ConstrainedTypes =
 
-    type String1 =
-    type String50 =
-    type EmailAddress =
+    type String1 = String1 of string
+    type String50 = String50 of string
+    
+    type FirstName = FirstName of String50
+    type MiddleInitial = MiddleInitial of String1
+    type LastName = LastName of String50
+    
+    type EmailAdress = EmailAdress of String50
+    type VerifiedEmailAdress = VerifiedEmailAdress of EmailAdress
+    type UnverifiedEmailAdress = UnverifiedEmailAdress of EmailAdress
+    type EmailContactInfo =
+        | Verified of VerifiedEmailAdress
+        | Unverified of EmailAdress
 
 // ----------------------------------------
 // and a VerificationService module?

@@ -1,4 +1,4 @@
-﻿// ================================================
+﻿﻿// ================================================
 // DDD Exercise: Refactoring designs to use states
 // ================================================
 
@@ -41,7 +41,12 @@ module Customer_Before =
 // contains the redesigned code
 module Customer_After =
 
-    type Customer = undefined
+    type CustomerName = CustomerName of string
+    type RegistrationId  = RegistrationId of int
+
+    type Customer =
+        | Guest of CustomerName
+        | RegisteredCustomer of CustomerName * RegistrationId
 
 (*
 Exercise 3b
@@ -68,8 +73,13 @@ module Connection_Before =
 // contains the redesigned code
 module Connection_After =
 
-
-    type Connection = undefined
+    type ConnectionStartedUtc = System.DateTime option
+    type ConnectionHandle = ConnectionHandle of int
+    type ReasonForDisconnection of string
+    
+    type Connection =
+        | Connected of ConnectionHandle * ConnectionStartedUtc
+        | Disconnected of ReasonForDisconnection
 
 (*
 // Exercise 3c
@@ -96,7 +106,13 @@ module Order_Before =
 // contains the redesigned code
 module Order_After =
 
-    type Order = undefined
+    type OrderId = OrderId of int
+    type PaidAmount = float option
+    type PaidDate = System.DateTime option
+    
+    type Order =
+        | Paid of OrderId * PaidAmount * PaidDate
+        | Unpaid of OrderId
 
 (*
 Questions for discussion:
@@ -104,5 +120,6 @@ Questions for discussion:
 * When does it make sense to use a type alias rather than a separate type?
 
 * When does it make sense to define a new type rather than use a tuple?
-
+the tuple is not named, the type is
+In most cases, records are better than tuples
 *)

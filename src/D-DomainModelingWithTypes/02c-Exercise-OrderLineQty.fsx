@@ -52,11 +52,13 @@ open ConstrainedTypes
 let increment (olq:OrderLineQty) =
     let i1 = OrderLineQty.value olq
     let i2 = i1 + 1
-    ???
+    OrderLineQty.create i2
 
 // Exercise: Write a function that subtracts one from an OrderLineQty
 let decrement (olq:OrderLineQty) =
-    ???
+    let i1 = OrderLineQty.value olq
+    let i2 = i1 - 1
+    OrderLineQty.create i2
 
 
 
